@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navbar.css'
-import { Link, NavLink } from 'react-router-dom'
+import {  NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 export const Navbar = () => {
@@ -10,7 +10,7 @@ export const Navbar = () => {
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
                 <div className="container">
-                    <a className="navbar-brand fw-bold fs-4" href="#">EMart</a>
+                    <NavLink className="navbar-brand fw-bold fs-4" to="/">EMart</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -36,7 +36,10 @@ export const Navbar = () => {
                         </ul>
                         <div className="buttons">
                             <NavLink to="/login" className="btn btn-outline-dark">Login</NavLink>
-                            <NavLink to="/register" className="btn btn-outline-dark ms-2">Register</NavLink>
+                            <NavLink to="/register" className="btn btn-outline-dark ms-2" >Register</NavLink>
+                            {/* <button  className="btn btn-outline-dark ms-2"   data-bs-toggle="modal"
+          data-bs-target="#signupModal">Register</button> */}
+
                             <NavLink to="/cart" className="btn btn-outline-dark ms-2">Cart({CartData.length})</NavLink>
                         </div>
                     </div>

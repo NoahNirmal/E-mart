@@ -2,14 +2,14 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { addCart, delCart } from '../Redux/action'
+import { Login } from './Login'
 
 
 
 export const Cart = () => {
-    const state = useSelector((state)=>state.reducer.Cart)
+    const CartData = useSelector((state)=>state.reducer)
     const dispatch = useDispatch()
-
-    console.log(state)
+    console.log(CartData.login)
     const handleAdd = (item) => {
         dispatch(addCart(item))
     }
@@ -29,6 +29,7 @@ export const Cart = () => {
         )
     }
     const cartItems = (product) => {
+        console.log(product,"cart")
         return(
             <>
                 <div className="px-4 my-5 bg-light rounded-3 py-5">
@@ -74,9 +75,13 @@ export const Cart = () => {
 
     return (
         <div>
-            {state.length === 0 && emptyCart()}
-            {state.length !== 0 && state.map(cartItems)}
-            {state.length !== 0 && buttons()}
+            {CartData.login?(<>
+                {CartData.Cart.length === 0 && emptyCart()}
+            {CartData.Cart.length !== 0 && CartData.Cart.map(cartItems)}
+            {CartData.Cart.length !== 0 && buttons()}
+        
+            </>):<Login />}
+           
         </div>
     );
 }

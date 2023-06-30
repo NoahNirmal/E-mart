@@ -6,7 +6,7 @@ import { loginchange } from '../Redux/action'
 
 export const Login = () => {
   const [registerdata, setRegisterdata] = useState([])
-  const [logindata, setlogindata] = useState({
+  const [logindata, setLogindata] = useState({
     email:"",
     password:""
   })
@@ -18,14 +18,18 @@ const navigate =useNavigate()
 
   useEffect(() => {
 
-    const getLogindata=()=>{
-      axios.get("http://localhost:3005/registers").then((res)=>{
-        setRegisterdata(res.data)
-      }).catch((err)=>{
-        console.log(err)
-      })
-    }
-    getLogindata()
+    // const getLogindata=()=>{
+    //   axios.get("http://localhost:3005/registers").then((res)=>{
+    //     setRegisterdata(res.data)
+    //   }).catch((err)=>{
+    //     console.log(err)
+    //   })
+    // }
+    // getLogindata()
+    const loc = localStorage.getItem("register")
+    setRegisterdata(JSON.parse(loc))
+
+
   
    
   }, [])
@@ -33,7 +37,6 @@ const navigate =useNavigate()
   const logincred=(e)=>{
     e.preventDefault()
     const filterdata= registerdata.filter((ele)=>{
-      console.log(ele)
       return ele.email === logindata.email && ele.password === logindata.password
     })
    console.log(registerdata,"dbjson")
@@ -41,11 +44,17 @@ const navigate =useNavigate()
     if(filterdata.length>0){
       dispatch(loginchange())
       navigate("/cart")
+
       
     }
     else{
       alert("login credential are incorrect")
     }
+
+    setLogindata({
+      email:"",
+      password:""
+    })
   }
 
   
@@ -54,27 +63,29 @@ const navigate =useNavigate()
     <>
      <div className="container px-5 py-5 d-flex justify-content-center align-items-center">
         <div className="row col-md-4 ">
+        <h4 className='display-6 fw-bolder text-center py-3 fs-3'>Login</h4>
+
           <form onSubmit={(e)=>logincred(e)}>
             <div className="form-group py-2">
-              <label for="exampleInputEmail1">Email address</label>
+              <label htmlFor="exampleInputEmail1">Email address</label>
               <input
                 type="email"
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
-                onChange={(e)=>setlogindata({...logindata,email:e.target.value})}
+                onChange={(e)=>setLogindata({...logindata,email:e.target.value})}
               />
             
             </div>
             <div className="form-group py-2">
-              <label for="exampleInputPassword1">Password</label>
+              <label htmlFor="exampleInputPassword1">Password</label>
               <input
                 type="password"
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
-                onChange={(e)=>setlogindata({...logindata,password:e.target.value})}
+                onChange={(e)=>setLogindata({...logindata,password:e.target.value})}
 
               />
             </div>

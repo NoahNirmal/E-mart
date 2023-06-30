@@ -20,13 +20,13 @@ export const delCart=(product)=>{
     }
 }
 
-export const register=(data)=>{
-    return {
-        type: REGISTERDATA,
-        payload:data
+// export const register=(data)=>{
+//     return {
+//         type: REGISTERDATA,
+//         payload:data
 
-    }
-}
+//     }
+// }
 
 
 export const loginchange=()=>{

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { register } from "../Redux/action";
+// import { useDispatch, useSelector } from 'react-redux'
+// import { register } from "../Redux/action";
 
 
 
@@ -14,7 +14,7 @@ export const Register = () => {
     password: "",
   });
   const navigate =useNavigate()
-     const dispatch = useDispatch()
+    //  const dispatch = useDispatch()
     //  const regdata = useSelector((state)=>state.reducer.registerdata)
     //  console.log(regdata)
 
@@ -25,16 +25,21 @@ export const Register = () => {
       alert("please enter details")
     }
     else{
-      axios
-      .post("http://localhost:3005/registers", rdata)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      // axios
+      // .post("http://localhost:3005/registers", rdata)
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
 
       // dispatch(register(rdata))
+      const regarr= []
+      const loc = localStorage.getItem("register")
+      regarr.push(...JSON.parse(loc),rdata)
+      localStorage.setItem("register",JSON.stringify(regarr))
+      // console.log(regdata)
 
       alert("Register Successfully")
 
@@ -53,7 +58,7 @@ export const Register = () => {
   return (
     <>
       <div className="container px-5 py-5 d-flex flex-column justify-content-center align-items-center">
-        <h4>Register</h4>
+      <h4 className='display-6 fw-bolder text-center py-3'>Register</h4>
         <div className="row col-md-4">
           <form onSubmit={registerData}>
             <div className="form-group py-2 d-flex">

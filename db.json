@@ -27,6 +27,13 @@
       "email": "abc@gmail.com",
       "password": "123",
       "id": 4
+    },
+    {
+      "name": "aditya",
+      "lastname": "sharma",
+      "email": "aditya@gmail.com",
+      "password": "123",
+      "id": 5
     }
   ]
 }

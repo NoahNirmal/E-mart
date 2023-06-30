@@ -1,6 +1,7 @@
 export const ADDITEM="ADDITEM"
 export const DELETEITEM="DELETEITEM"
 export const LOGIN ="LOGIN"
+export const REGISTERDATA="REGISTERDATA"
 
 
 export const addCart=(product)=>{
@@ -18,6 +19,15 @@ export const delCart=(product)=>{
 
     }
 }
+
+export const register=(data)=>{
+    return {
+        type: REGISTERDATA,
+        payload:data
+
+    }
+}
+
 
 export const loginchange=()=>{
     return {

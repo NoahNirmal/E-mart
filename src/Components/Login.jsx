@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React ,{useEffect,useState}from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { loginchange } from '../Redux/action'
 
@@ -13,11 +13,13 @@ export const Login = () => {
 
 const dispatch = useDispatch()
 const navigate =useNavigate()
+  // const cred =useSelector((state)=>state.reducer.registerdata)
+  // console.log(cred)
 
   useEffect(() => {
 
     const getLogindata=()=>{
-      axios.get("http://localhost:3005/register").then((res)=>{
+      axios.get("http://localhost:3005/registers").then((res)=>{
         setRegisterdata(res.data)
       }).catch((err)=>{
         console.log(err)

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from "../Redux/action";
+
+
 
 export const Register = () => {
   const [rdata, setRdata] = useState({
@@ -10,6 +14,10 @@ export const Register = () => {
     password: "",
   });
   const navigate =useNavigate()
+     const dispatch = useDispatch()
+    //  const regdata = useSelector((state)=>state.reducer.registerdata)
+    //  console.log(regdata)
+
 
   const registerData = (e) => {
     e.preventDefault();
@@ -18,13 +26,15 @@ export const Register = () => {
     }
     else{
       axios
-      .post("http://localhost:3005/register", rdata)
+      .post("http://localhost:3005/registers", rdata)
       .then((response) => {
         console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
+
+      // dispatch(register(rdata))
 
       alert("Register Successfully")
 

@@ -1,8 +1,9 @@
-import { ADDITEM, DELETEITEM, LOGIN } from "./action";
+import { ADDITEM, DELETEITEM, LOGIN, REGISTERDATA } from "./action";
 
 const initialState = {
   Cart: [],
-  login : false
+  login : false,
+  registerdata:[]
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -43,6 +44,10 @@ export const reducer = (state = initialState, { type, payload }) => {
 
   else if( type === LOGIN){
     return {...state,login:true}
+  }
+  else if( type === REGISTERDATA){
+    console.log({...state,registerdata:[...state.registerdata,payload]})
+    return {...state,registerdata:[...state.registerdata,payload]}
   }
   
   else {

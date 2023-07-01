@@ -35,10 +35,13 @@ export const Register = () => {
       // });
 
       // dispatch(register(rdata))
-      const regarr= []
-      const loc = localStorage.getItem("register")
-      regarr.push(...JSON.parse(loc),rdata)
-      localStorage.setItem("register",JSON.stringify(regarr))
+      const regarr = [];
+      const loc = localStorage.getItem("register");
+      if (loc) {
+        regarr.push(...JSON.parse(loc));
+      }
+      regarr.push(rdata);
+      localStorage.setItem("register", JSON.stringify(regarr));
       // console.log(regdata)
 
       alert("Register Successfully")

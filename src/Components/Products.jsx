@@ -13,6 +13,8 @@ export const Products = () => {
     const [products, SetProducts] = useState([])
     const [filter, setFilter] = useState(products)
     const [isloading, setIsloading] = useState(false)
+    const [active, setActive] = useState("All")
+
     let componentMounted = true
 
     useEffect(() => {
@@ -27,6 +29,9 @@ export const Products = () => {
                 SetProducts(data)
                 setFilter(data)
                 setIsloading(false)
+                // console.log(products,"filterdata")
+
+                // console.log(filter,"filterdata")
 
 
             }
@@ -69,9 +74,16 @@ export const Products = () => {
     }
 
     const Filterproducts=(cat)=>{
-
-        const updatefilter = products.filter((ele)=>ele.category === cat)
-        setFilter(updatefilter)
+        if(cat=="All"){
+            setFilter(products)
+            setActive(cat)
+        }
+        else{
+            setActive(cat)
+            const updatefilter = products.filter((ele)=>ele.category === cat)
+            setFilter(updatefilter)
+        }
+     
 
     }
 
@@ -83,11 +95,11 @@ export const Products = () => {
         return (
             <>
                 <div className="buttons d-flex justify-content-center mb-5 pb-5">
-                    <button className="btn btn-outline-dark me-2" onClick={()=>setFilter(products)}> All</button>
-                    <button className="btn btn-outline-dark me-2" onClick={()=>Filterproducts("men's clothing")}> Men's Clothing</button>
-                    <button className="btn btn-outline-dark me-2" onClick={()=>Filterproducts("women's clothing")}> Women's Clothing</button>
-                    <button className="btn btn-outline-dark me-2" onClick={()=>Filterproducts("jewelery")}> Jewellery's</button>
-                    <button className="btn btn-outline-dark me-2" onClick={()=>Filterproducts("electronics")}> Electronic</button>
+                    <button className={`btn btn-outline-dark me-2 ${active === "All"?"active": null}` } onClick={()=>Filterproducts("All")}> All</button>
+                    <button className={`btn btn-outline-dark me-2 ${active === "men's clothing"?"active": null}` } onClick={()=>Filterproducts("men's clothing")}> Men's Clothing</button>
+                    <button className={`btn btn-outline-dark me-2 ${active === "women's clothing"?"active": null}` } onClick={()=>Filterproducts("women's clothing")}> Women's Clothing</button>
+                    <button className={`btn btn-outline-dark me-2 ${active === "jewelery"?"active": null}` } onClick={()=>Filterproducts("jewelery")}> Jewellery's</button>
+                    <button className={`btn btn-outline-dark me-2 ${active === "electronics"?"active": null}` } onClick={()=>Filterproducts("electronics")}> Electronic</button>
 
                 </div>
 

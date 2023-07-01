@@ -35,7 +35,7 @@ export const Navbar = () => {
 
                         </ul>
                         <div className="buttons">
-                            <NavLink to="/login" className="btn btn-outline-dark">Login</NavLink>
+                            <NavLink to="/login" className="btn btn-outline-dark ">Login</NavLink>
                             <NavLink to="/register" className="btn btn-outline-dark ms-2" >Register</NavLink>
                             {/* <button  className="btn btn-outline-dark ms-2"   data-bs-toggle="modal"
           data-bs-target="#signupModal">Register</button> */}

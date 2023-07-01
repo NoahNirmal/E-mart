@@ -4,8 +4,8 @@ import {  NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 export const Navbar = () => {
-    const CartData = useSelector((state)=>state.reducer.Cart)
-    // console.log(CartData)
+    const Data = useSelector((state)=>state.reducer)
+    console.log(Data.login)
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
@@ -35,12 +35,21 @@ export const Navbar = () => {
 
                         </ul>
                         <div className="buttons">
+                            {
+                                Data.login ===true?(<>
+                                 <button  className="btn btn-outline-dark ms-2">Profile</button>
+                                </>):
+                                (<>
+
+                                
                             <NavLink to="/login" className="btn btn-outline-dark ">Login</NavLink>
                             <NavLink to="/register" className="btn btn-outline-dark ms-2" >Register</NavLink>
-                            {/* <button  className="btn btn-outline-dark ms-2"   data-bs-toggle="modal"
-          data-bs-target="#signupModal">Register</button> */}
+                                   
+                                </>)
+                            }
+                         
 
-                            <NavLink to="/cart" className="btn btn-outline-dark ms-2">Cart({CartData.length})</NavLink>
+                            <NavLink to="/cart" className="btn btn-outline-dark ms-2">Cart({Data.Cart.length})</NavLink>
                         </div>
                     </div>
                 </div>

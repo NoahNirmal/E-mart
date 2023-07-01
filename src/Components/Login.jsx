@@ -69,6 +69,7 @@ const navigate =useNavigate()
             <div className="form-group py-2">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input
+              value={logindata.email}
                 type="email"
                 className="form-control"
                 id="exampleInputEmail1"
@@ -81,6 +82,7 @@ const navigate =useNavigate()
             <div className="form-group py-2">
               <label htmlFor="exampleInputPassword1">Password</label>
               <input
+                            value={logindata.password}
                 type="password"
                 className="form-control"
                 id="exampleInputPassword1"

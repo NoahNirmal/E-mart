@@ -36,12 +36,15 @@ const navigate =useNavigate()
 
   const logincred=(e)=>{
     e.preventDefault()
+    // localStorage.setItem("login",JSON.stringify())
     const filterdata= registerdata.filter((ele)=>{
       return ele.email === logindata.email && ele.password === logindata.password
     })
+
    console.log(registerdata,"dbjson")
     console.log(filterdata,"filter")
     if(filterdata.length>0){
+      localStorage.setItem("login",JSON.stringify(filterdata))
       dispatch(loginchange())
       navigate("/cart")
 

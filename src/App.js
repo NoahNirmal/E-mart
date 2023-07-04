@@ -8,8 +8,10 @@ import { Cart } from './Components/Cart';
 import About from './Components/About';
 import { Register } from './Components/Register';
 import { Login } from './Components/Login';
+import Contact from './Components/Contact';
+import Checkout from './Components/Checkout';
 function App() {
-  const location = useLocation()
+  // const location = useLocation()
   return (
     <div className="app">
 
@@ -23,7 +25,11 @@ function App() {
         <Route path='/login' element={<Login/>}/>
 
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+
         <Route path='/register' element={<Register/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
+
 
 
 

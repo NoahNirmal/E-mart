@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {  logout } from "../Redux/action";
 
 export const Navbar = () => {
   const Data = useSelector((state) => state.reducer);
-  console.log(Data.login);
+  console.log(Data.Logindata[0]);
+
+const disptach=  useDispatch()
+
   
-  const log = localStorage.getItem("login")
-  if(log){
-    console.log(JSON.parse(log))
-    var [logn]=JSON.parse(log)
-    console.log(logn.name)
-  }
+  // const log = localStorage.getItem("login")
+  // if(log){
+  //   console.log(JSON.parse(log))
+  //   var [logn]=JSON.parse(log)
+  //   console.log(logn.name)
+  // }
   
   
   
@@ -75,11 +79,14 @@ export const Navbar = () => {
                     </button>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item">
-                          {logn.name+" "+logn.lastname}
-                        </a>
+                        <button className="dropdown-item" >
+                          {Data.Logindata[0].name+" "+Data.Logindata[0].lastname}
+                          
+                        </button>
 
-                        <NavLink className="dropdown-item" to="/login">
+                        <NavLink className="dropdown-item" to="/login" onClick={()=>{
+                          disptach(logout())
+                        }}>
                           Logout
                         </NavLink>
                       </li>

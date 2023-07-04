@@ -1,7 +1,8 @@
 export const ADDITEM="ADDITEM"
 export const DELETEITEM="DELETEITEM"
 export const LOGIN ="LOGIN"
-export const REGISTERDATA="REGISTERDATA"
+export const LOG_DATA="LOG_DATA"
+export const LOGOUT="LOGOUT"
 
 
 export const addCart=(product)=>{
@@ -20,13 +21,20 @@ export const delCart=(product)=>{
     }
 }
 
-// export const register=(data)=>{
-//     return {
-//         type: REGISTERDATA,
-//         payload:data
+export const logData=(data)=>{
+    return {
+        type: LOG_DATA,
+        payload:data
 
-//     }
-// }
+    }
+}
+
+export const logout=()=>{
+    return {
+        type: LOGOUT,
+
+    }
+}
 
 
 export const loginchange=()=>{

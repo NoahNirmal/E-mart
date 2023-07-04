@@ -5,9 +5,9 @@ import "./Home.css";
 export const Home = () => {
   return (
     <div className="hero">
-      <div className="card text-bg-white border-0 color-white ">
+      {/* <div className="card text-bg-white border-0 color-white ">
                 <img src="https://img.freepik.com/free-photo/shopping-concept-with-young-couple-space_23-2147707435.jpg?w=2000" className="card-img" alt="bg-image" height="550px" />
-                <div class="card-img-overlay ">
+                <div className="card-img-overlay ">
                     <div className="container d-flex  flex-column justify-content-center align-items-end ">
                         <h5 className="card-title display-3 fw-bolder mb-0">New Seasons Arrivals</h5>
                         <p className="card-text  lead fs-2">
@@ -15,69 +15,94 @@ export const Home = () => {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-      {/* <div
+      <div
         id="carouselExampleIndicators"
-        className="carousel slide"
-        data-ride="carousel"
+        class="carousel slide"
+        data-bs-ride="carousel"
       >
-        <ol className="carousel-indicators">
-          <li
-            data-target="#carouselExampleIndicators"
-            data-slide-to="0"
-            className="active"
-          ></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
             <img
-              className="d-block w-100"
-              src="https://img.freepik.com/free-photo/shopping-concept-with-young-couple-space_23-2147707435.jpg?w=2000"
-              alt="First slide"
-              height="550px"
+              src="/assets/images/home/product2.jpg"
+              class="d-block w-100"
+              alt="IPhone"
+              height="500px"
             />
-            <div className="carousel-caption " >
-              <h5 className="carousel-title display-3 fw-bolder mb-0 text-dark">
-                New Seasons Arrivals
-              </h5>
-              <p className="carousel-text lead fs-2 text-dark"> CHECK OUT ALL THE TRENDS</p>
-            </div>
           </div>
-          <div className="carousel-item">
-            <img className="d-block w-100" src="https://t4.ftcdn.net/jpg/03/09/86/97/360_F_309869755_IquCHHxF7YABo2odctUGEjMrgVDSM8qV.jpg" alt="Second slide" />
+          <div class="carousel-item">
+            <img
+              src="/assets/images/home/product3.jpg"
+              class="d-block w-100"
+              alt="IPhone"
+              height="500px"
+            />
           </div>
-          <div className="carousel-item">
-            <img className="d-block w-100" src="..." alt="Third slide" />
+          <div class="carousel-item">
+            <img
+              src="/assets/images/home/img1.jpg"
+              class="d-block w-100"
+              alt="IPhone"
+              height="500px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/assets/images/home/img4.jpg"
+              class="d-block w-100"
+              alt="IPhone"
+              height="500px"
+            />
           </div>
         </div>
-        <a
-          className="carousel-control-prev "
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="prev"
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
         >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Previous</span>
-        </a>
-        <a
-          className="carousel-control-next"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="next"
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
         >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Next</span>
-        </a>
-      </div> */}
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
       <Products />
     </div>

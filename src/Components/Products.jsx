@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useRef } from 'react'
 import Skeleton from "react-loading-skeleton"
 import { NavLink } from 'react-router-dom'
 
@@ -15,7 +16,7 @@ export const Products = () => {
     const [isloading, setIsloading] = useState(false)
     const [active, setActive] = useState("All")
 
-    let componentMounted = true
+    const componentMounted = useRef(true)
 
     useEffect(() => {
         const getProducts = async () => {
@@ -23,7 +24,7 @@ export const Products = () => {
             const res = await fetch('https://fakestoreapi.com/products')
             // console.log(data)
 
-            if (componentMounted) {
+            if (componentMounted.current) {
                 const data = await res.json()
 
                 SetProducts(data)
@@ -39,7 +40,7 @@ export const Products = () => {
 
 
             return () => {
-                componentMounted = false
+                componentMounted.current = false
             }
         }
 
@@ -74,7 +75,7 @@ export const Products = () => {
     }
 
     const Filterproducts=(cat)=>{
-        if(cat=="All"){
+        if(cat==="All"){
             setFilter(products)
             setActive(cat)
         }
@@ -94,7 +95,7 @@ export const Products = () => {
     const ShowProducts = () => {
         return (
             <>
-                <div className="buttons d-flex justify-content-center mb-5 pb-5">
+                <div  className="buttons d-flex justify-content-center mb-5 pb-5">
                     <button className={`btn btn-outline-dark me-2 ${active === "All"?"active": null}` } onClick={()=>Filterproducts("All")}> All</button>
                     <button className={`btn btn-outline-dark me-2 ${active === "men's clothing"?"active": null}` } onClick={()=>Filterproducts("men's clothing")}> Men's Clothing</button>
                     <button className={`btn btn-outline-dark me-2 ${active === "women's clothing"?"active": null}` } onClick={()=>Filterproducts("women's clothing")}> Women's Clothing</button>
@@ -106,9 +107,9 @@ export const Products = () => {
                 {
                     filter.map((ele) => {
                         return (
-                            <>
-                                <div className="col-md-3 mb-4" key={ele.id}>
-                                    <div className="card h-100 text-center p-4" key={ele.id} >
+                            <React.Fragment key={ele.id}>
+                                <div className="col-md-3 mb-4">
+                                    <div className="card h-100 text-center p-4" >
                                         <img src={ele.image} className="card-img-top" alt={ele.title} height="250px"/>
                                         <div className="card-body">
                                             <h5 className="card-title mb-0">{ele.title.substring(0,12)}...</h5>
@@ -118,7 +119,7 @@ export const Products = () => {
                                     </div>
 
                                 </div>
-                            </>
+                                </React.Fragment>
                         )
                     })
                 }

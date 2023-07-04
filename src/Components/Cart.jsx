@@ -15,7 +15,8 @@ export const Cart = () => {
     const handleAdd = (item) => {
         dispatch(addCart(item))
     }
-    const handleDel = (item) => {
+    
+    const handlewholeDel = (item) => {
         dispatch(deItem(item))
         toast.error('Item deleted from cart!!', {
             position: "top-right",
@@ -27,6 +28,10 @@ export const Cart = () => {
             progress: undefined,
             theme: "dark",
             });
+    }
+    const handleDel = (item) => {
+        dispatch(delCart(item))
+       
     }
 
     const emptyCart = () => {
@@ -46,7 +51,7 @@ export const Cart = () => {
             <>
                 <div className="px-4 my-5 bg-light rounded-3 py-5">
                 <div className="container py-4">
-                <button onClick={()=>handleDel(product)} className="btn-close float-end" aria-label="Close"></button>
+                <button onClick={()=>handlewholeDel(product)} className="btn-close float-end" aria-label="Close"></button>
 
                     <div className="row justify-content-center">
                         <div className="col-md-4">

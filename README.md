@@ -9,8 +9,8 @@ Emart is an e-commerce website built using React, Bootstrap, Redux, React Router
 - Shopping cart functionality for adding and managing products.
 - User account creation and management.
 - Order placement and checkout process.
-- Admin panel for managing products, inventory, and orders.
-- Sales reports and analytics for administrators.
+<!-- - Admin panel for managing products, inventory, and orders.
+- Sales reports and analytics for administrators. -->
 - Integration with JSON Server as a mock API for data retrieval and manipulation.
 - Integration with Axios for making HTTP requests to the mock API.
 

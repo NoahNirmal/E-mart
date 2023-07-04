@@ -1,4 +1,4 @@
-import { ADDITEM, DELETEITEM, LOGIN, LOGOUT, LOG_DATA } from "./action";
+import { ADDITEM, DELETEITEM, LOGIN, LOGOUT, LOG_DATA, WHOLE_ITEM } from "./action";
 
 const initialState = {
   Cart: [],
@@ -40,6 +40,13 @@ export const reducer = (state = initialState, { type, payload }) => {
           };
     }
     
+  }
+  else if( type=== WHOLE_ITEM){
+    return {
+      ...state,
+      Cart: state.Cart.filter((item) => item.id !== payload.id),
+    };
+
   }
 
   else if( type === LOGIN){

@@ -1,8 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { addCart, delCart } from '../Redux/action'
+import { addCart, deItem, delCart } from '../Redux/action'
 import { Login } from './Login'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -14,7 +16,17 @@ export const Cart = () => {
         dispatch(addCart(item))
     }
     const handleDel = (item) => {
-        dispatch(delCart(item))
+        dispatch(deItem(item))
+        toast.error('Item deleted from cart!!', {
+            position: "top-right",
+            autoClose: 800,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
     }
 
     const emptyCart = () => {
@@ -83,6 +95,19 @@ export const Cart = () => {
             {CartData.Cart.length !== 0 && buttons()}
         
             </>):<Login />}
+
+            <ToastContainer
+position="top-right"
+autoClose={1000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>
            
         </div>
     );

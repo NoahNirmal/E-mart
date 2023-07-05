@@ -39,7 +39,10 @@ export const Login = () => {
       );
     });
 
+    console.log(filterdata,"filterdata")
+
     if (filterdata.length > 0) {
+    
       dispatch(logData(filterdata));
       dispatch(loginchange());
       navigate("/cart");

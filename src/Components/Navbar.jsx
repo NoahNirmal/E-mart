@@ -75,7 +75,7 @@ const disptach=  useDispatch()
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      {Data.Logindata[0].name+" "+Data.Logindata[0].lastname}
+                      {Data.Logindata[0].username}
                     </button>
                     <ul className="dropdown-menu">
                       <li>

@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 export const Register = () => {
   const [rdata, setRdata] = useState({
-    name: "",
-    lastname: "",
+    username: "",
+    fullname: "",
     email: "",
     password: "",
   });
@@ -21,7 +22,7 @@ export const Register = () => {
 
   const registerData = (e) => {
     e.preventDefault();
-    if(rdata.name===""|| rdata.lastname=== "" || rdata.email===""|| rdata.password ===""){
+    if(rdata.username===""|| rdata.fullname=== "" || rdata.email===""|| rdata.password ===""){
       alert("please enter details")
     }
     else{
@@ -49,8 +50,8 @@ export const Register = () => {
       alert("Register Successfully")
 
       setRdata({
-        name: "",
-        lastname: "",
+        username: "",
+        fullname: "",
         email: "",
         password: "",
       })
@@ -81,15 +82,15 @@ export const Register = () => {
                 />
               </div>
               <div className="col-md-6 ms-2">
-                <label htmlFor="LastName">Last Name</label>
+                <label htmlFor="fullname">Last Name</label>
                 <input
-                  value={rdata.lastname}
+                  value={rdata.fullname}
                   type="text"
                   className="form-control"
-                  id="LastName"
+                  id="fullname"
                   placeholder="Enter Last Name"
                   onChange={(e) =>
-                    setRdata({ ...rdata, lastname: e.target.value })
+                    setRdata({ ...rdata, fullname: e.target.value })
                   }
                 />
               </div>
@@ -133,34 +134,34 @@ export const Register = () => {
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title text-center">Register</h5>
+          <h5 class="card-title  fw-bold">Join our Community!</h5>
         </div>
         <div class="card-body">
           <form onSubmit={registerData}>
             <div class="mb-3 row">
               <div class="col-md-6">
-                <label for="Name1">Name</label>
+                <label for="Name1">Username</label>
                 <input
-                  value={rdata.name}
+                  value={rdata.username}
                   type="text"
                   class="form-control"
                   id="Name1"
-                  placeholder="Enter Name"
+                  placeholder="Enter username"
                   onChange={(e) =>
-                    setRdata({ ...rdata, name: e.target.value })
+                    setRdata({ ...rdata, username: e.target.value })
                   }
                 />
               </div>
               <div class="col-md-6">
-                <label for="LastName">Last Name</label>
+                <label for="fullname">Full Name</label>
                 <input
-                  value={rdata.lastname}
+                  value={rdata.fullname}
                   type="text"
                   class="form-control"
-                  id="LastName"
-                  placeholder="Enter Last Name"
+                  id="fullname"
+                  placeholder="Enter Full Name"
                   onChange={(e) =>
-                    setRdata({ ...rdata, lastname: e.target.value })
+                    setRdata({ ...rdata, fullname: e.target.value })
                   }
                 />
               </div>

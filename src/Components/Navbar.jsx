@@ -48,18 +48,18 @@ const disptach=  useDispatch()
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/products">
+                <NavLink className="nav-link" activeClassName="active" to="/products">
                   Products
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/about">
+                <NavLink className="nav-link" activeClassName="active" to="/about">
                   About
                 </NavLink>
                 {/* <NavLink to="/products">About</NavLink> */}
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">
+                <NavLink className="nav-link"  activeClassName="active"to="/contact">
                   Contact
                 </NavLink>
               </li>
@@ -75,14 +75,14 @@ const disptach=  useDispatch()
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      Profile
+                      {Data.Logindata[0].name+" "+Data.Logindata[0].lastname}
                     </button>
                     <ul className="dropdown-menu">
                       <li>
-                        <button className="dropdown-item" >
+                        {/* <button className="dropdown-item" >
                           {Data.Logindata[0].name+" "+Data.Logindata[0].lastname}
                           
-                        </button>
+                        </button> */}
 
                         <NavLink className="dropdown-item" to="/login" onClick={()=>{
                           disptach(logout())

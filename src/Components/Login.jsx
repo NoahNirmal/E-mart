@@ -115,7 +115,7 @@ export const Login = () => {
                       }
                     />
                   </div>
-                  <button type="submit" className="btn btn-outline-primary w-100 mt-3">
+                  <button type="submit" className="btn btn-outline-dark w-100 mt-3">
                     Sign in
                   </button>
                   <div className="d-flex flex-row align-items-center justify-content-center pb-2 mt-2">
@@ -124,7 +124,7 @@ export const Login = () => {
                       to="/register"
                       outline
                       className="mx-1"
-                      color="danger"
+                      style={{color:"black"}}
                     >
                       Create an account
                     </NavLink>

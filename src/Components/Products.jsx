@@ -4,15 +4,17 @@ import Skeleton from "react-loading-skeleton";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { addCart } from "../Redux/action";
-
+import "./Products.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import StarRatings from "react-star-ratings";
 
 export const Products = () => {
   const [products, SetProducts] = useState([]);
   const [filter, setFilter] = useState(products);
   const [isloading, setIsloading] = useState(false);
   const [active, setActive] = useState("All");
+  const [searchvalue, setSearchvalue] = useState("");
 
   const componentMounted = useRef(true);
 
@@ -73,6 +75,19 @@ export const Products = () => {
     }
   };
 
+  // const handleSearch = (e) => {
+  //   const Searchterm = e.target.value;
+  //   setSearchvalue(Searchterm);
+  //   if (Searchterm.trim() === " ") {
+  //     setFilter(products);
+  //   } else {
+  //     const searchproducts = products.filter((ele) => {
+  //       ele.title.toLowerCase().includes(Searchterm.toLowerCase());
+  //     });
+  //     setFilter(searchproducts);
+  //   }
+  // };
+
   const ShowProducts = () => {
     return (
       <>
@@ -122,6 +137,16 @@ export const Products = () => {
             {" "}
             Electronic
           </button>
+          {/* <div className="col-md-3 ms-5">
+            <input
+              type="text"
+              value={searchvalue}
+              className="form-control "
+              placeholder="Search your item"
+              style={{ border: "1px solid black" }}
+              onChange={handleSearch}
+            />
+          </div> */}
         </div>
 
         {filter.map((ele) => {
@@ -136,37 +161,50 @@ export const Products = () => {
                     height="250px"
                   />
                   <div className="card-body">
-                    <h5 className="card-title mb-0">
-                      {ele.title.substring(0, 12)}...
-                    </h5>
-                    <p className="card-text lead fw-bold">${ele.price}</p>
-                    <div className="row">
+                    <div className="card-body">
+                      <div>
+                        <h5 className="card-title mb-0">
+                          {ele.title.substring(0, 12)}...
+                        </h5>
+                        <p className="card-text lead fw-bold">${ele.price}</p>
+                      </div>
+                      <div className="row">
+                        <StarRatings
+                          rating={ele.rating && ele.rating.rate}
+                          starRatedColor="gold"
+                          numberOfStars={5}
+                          starDimension="20px"
+                          starSpacing="2px"
+                          className="star-ratings"
+                        />
+                      </div>
+                    </div>
 
-                 
-                    <button
-                      className="btn btn-dark  px-2 py-2 mb-2"
-                      onClick={() => {
-                        dispatch(addCart(ele));
-                        toast.success("Item added to cart!", {
-                          position: toast.POSITION.TOP_RIGHT,
-                          autoClose: 1000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "dark",
-                        });
-                      }}
-                    >
-                      Add to Cart
-                    </button>
-                    <NavLink
-                      to={`/products/${ele.id}`}
-                      className="btn btn-outline-dark "
-                    >
-                      More Details
-                    </NavLink>
+                    <div className="row">
+                      <button
+                        className="btn btn-dark  px-2 py-2 mb-2"
+                        onClick={() => {
+                          dispatch(addCart(ele));
+                          toast.success("Item added to cart!", {
+                            position: toast.POSITION.TOP_RIGHT,
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                          });
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                      <NavLink
+                        to={`/products/${ele.id}`}
+                        className="btn btn-outline-dark "
+                      >
+                        More Details
+                      </NavLink>
                     </div>
                   </div>
                 </div>

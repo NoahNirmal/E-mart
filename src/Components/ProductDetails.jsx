@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { addCart } from '../Redux/action';
-
+import StarRatings from "react-star-ratings";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -56,7 +56,15 @@ export const ProductDetails = () => {
         <div className="col-md-6">
           <h4 className="text-uppercase text-black-50">{details.category}</h4>
           <h1 className="display-5">{details.title}</h1>
-          <p className="lead fw-bolder">Rating {details.rating && details.rating.rate}</p>
+          <div className="lead fw-bolder">
+              <StarRatings
+                          rating={details.rating && details.rating.rate}
+                          starRatedColor="gold"
+                          numberOfStars={5}
+                          starDimension="30px"
+                          starSpacing="2px"
+                          className="star-ratings"
+                        /></div>
 
           <h3 className="display-5 fw-bold my-4">$ {details.price}</h3>
           <p className="lead">{details.description}</p>

@@ -19,7 +19,11 @@ export const Login = () => {
   useEffect(() => {
     const getLogindata = () => {
       axios
-        .get("https://emart-data.onrender.com/registers")
+        .get("https://emart-data.onrender.com/registers", {
+          params: {
+            _cacheBuster: new Date().getTime(), // Cache-busting parameter
+          },
+        })
         .then((res) => {
           console.log(res.data);
           setRegisterdata(res.data);
@@ -29,7 +33,7 @@ export const Login = () => {
         });
     };
     getLogindata();
-  }, []);
+  },[]);
 
   const logincred = (e) => {
     e.preventDefault();

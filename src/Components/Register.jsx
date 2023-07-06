@@ -33,37 +33,117 @@ export const Register = () => {
     //  console.log(regdata)
 
 
+  // const registerData = (e) => {
+  //   e.preventDefault();
+  //   if(rdata.username===""|| rdata.fullname=== "" || rdata.email===""|| rdata.password ===""){
+  //     alert("please enter details")
+  //   }
+  //   else{
+  //     const isDataExisting  = existingdata.some((ele)=>{
+  //       return ele.email === rdata.email
+  //     })
+
+  //     if(isDataExisting){
+  //       alert("Data already exists")
+  //       setRdata({
+  //         username: "",
+  //         fullname: "",
+  //         email: "",
+  //         password: "",
+  //       })
+  //     }
+
+  //     else{
+  //       axios
+  //       .post("https://emart-data.onrender.com/registers", rdata)
+  //       .then((response) => {
+  //         console.log(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+
+  //       // alert("Register Successfully")
+  //       toast.success('Register Successfully!', {
+  //         position: toast.POSITION.TOP_CENTER,
+  //         autoClose: 1000,
+  //         hideProgressBar: true,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: 'light',
+  //       });
+
+  //       setRdata({
+  //         username: "",
+  //         fullname: "",
+  //         email: "",
+  //         password: "",
+  //       })
+  
+  //       navigate("/login")
+
+  //     }
+
+   
+
+   
+
+  //     // // dispatch(register(rdata))
+  //     // const regarr = [];
+  //     // const loc = localStorage.getItem("register");
+  //     // if (loc) {
+  //     //   regarr.push(...JSON.parse(loc));
+  //     // }
+  //     // regarr.push(rdata);
+  //     // localStorage.setItem("register", JSON.stringify(regarr));
+  //     // console.log(regdata)
+
+
+     
+  //   }
+    
+  // };
   const registerData = (e) => {
     e.preventDefault();
-    if(rdata.username===""|| rdata.fullname=== "" || rdata.email===""|| rdata.password ===""){
-      alert("please enter details")
-    }
-    else{
-      const isDataExisting  = existingdata.some((ele)=>{
-        return ele.email === rdata.email
-      })
-
-      if(isDataExisting){
-        alert("Data already exists")
+    if (rdata.username === "" || rdata.fullname === "" || rdata.email === "" || rdata.password === "") {
+      alert("Please enter all details");
+    } else {
+      const isDataExisting = existingdata.some((ele) => {
+        return ele.email === rdata.email;
+      });
+  
+      if (isDataExisting) {
+        alert("Data already exists");
         setRdata({
           username: "",
           fullname: "",
           email: "",
           password: "",
-        })
-      }
-
-      else{
-        axios
-        .post("https://emart-data.onrender.com/registers", rdata)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
         });
-
-        // alert("Register Successfully")
+      } else {
+        axios
+          .post("https://emart-data.onrender.com/registers", rdata)
+          .then((response) => {
+            console.log(response.data);
+  
+            // Fetch updated data after successful registration
+            axios
+              .get("https://emart-data.onrender.com/registers")
+              .then((res) => {
+                console.log(res.data);
+                setExistingdata(res.data);
+                navigate("/login"); // Navigate to Login component
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+  
         toast.success('Register Successfully!', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
@@ -74,37 +154,17 @@ export const Register = () => {
           progress: undefined,
           theme: 'light',
         });
-
+  
         setRdata({
           username: "",
           fullname: "",
           email: "",
           password: "",
-        })
-  
-        navigate("/login")
-
+        });
       }
-
-   
-
-   
-
-      // // dispatch(register(rdata))
-      // const regarr = [];
-      // const loc = localStorage.getItem("register");
-      // if (loc) {
-      //   regarr.push(...JSON.parse(loc));
-      // }
-      // regarr.push(rdata);
-      // localStorage.setItem("register", JSON.stringify(regarr));
-      // console.log(regdata)
-
-
-     
     }
-    
   };
+  
 
   return (
     <>

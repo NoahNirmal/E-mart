@@ -152,8 +152,8 @@ export const Products = () => {
         {filter.map((ele) => {
           return (
             <React.Fragment key={ele.id}>
-              <div className="col-md-3 mb-4">
-                <div className="card h-100 text-center p-4">
+              <div className="col-md-3 mb-5">
+                <div className="card h-100 text-center p-3">
                   <img
                     src={ele.image}
                     className="card-img-top"

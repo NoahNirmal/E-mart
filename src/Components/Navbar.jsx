@@ -3,6 +3,9 @@ import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {  logout } from "../Redux/action";
+import {FaShoppingCart} from "react-icons/fa"
+import {BiLogIn} from "react-icons/bi"
+
 
 export const Navbar = () => {
   const Data = useSelector((state) => state.reducer);
@@ -59,7 +62,7 @@ const disptach=  useDispatch()
                 {/* <NavLink to="/products">About</NavLink> */}
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link"  activeclassname="active"to="/contact">
+                <NavLink className="nav-link"  activeclassname="active "to="/contact">
                   Contact
                 </NavLink>
               </li>
@@ -96,7 +99,7 @@ const disptach=  useDispatch()
               ) : (
                 <>
                   <NavLink to="/login" className="btn btn-outline-dark ">
-                    Login
+                    <BiLogIn /><span className="ms-1">Login</span>
                   </NavLink>
                   <NavLink to="/register" className="btn btn-outline-dark ms-2">
                     Register
@@ -105,7 +108,7 @@ const disptach=  useDispatch()
               )}
 
               <NavLink to="/cart" className="btn btn-outline-dark ms-2">
-                Cart({Data.Cart.length})
+                <FaShoppingCart /><span className="ms-1">{Data.Cart.length > 0?Data.Cart.length:null}</span>
               </NavLink>
             </div>
           </div>

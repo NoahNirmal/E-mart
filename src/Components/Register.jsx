@@ -4,11 +4,8 @@ import { useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from 'react-redux'
 // import { register } from "../Redux/action";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Register = () => {
   const [rdata, setRdata] = useState({
@@ -17,21 +14,23 @@ export const Register = () => {
     email: "",
     password: "",
   });
-  const [existingdata, setExistingdata] = useState([])
+  const [existingdata, setExistingdata] = useState([]);
 
-  useEffect(()=>{
-    axios.get("https://emart-data.onrender.com/registers").then((response)=>{
-      // console.log(response.data)
-      setExistingdata(response.data)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  },[])
-  const navigate =useNavigate()
-    //  const dispatch = useDispatch()
-    //  const regdata = useSelector((state)=>state.reducer.registerdata)
-    //  console.log(regdata)
-
+  useEffect(() => {
+    axios
+      .get("https://emart-data.onrender.com/registers")
+      .then((response) => {
+        // console.log(response.data)
+        setExistingdata(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const navigate = useNavigate();
+  //  const dispatch = useDispatch()
+  //  const regdata = useSelector((state)=>state.reducer.registerdata)
+  //  console.log(regdata)
 
   // const registerData = (e) => {
   //   e.preventDefault();
@@ -81,14 +80,10 @@ export const Register = () => {
   //         email: "",
   //         password: "",
   //       })
-  
+
   //       navigate("/login")
 
   //     }
-
-   
-
-   
 
   //     // // dispatch(register(rdata))
   //     // const regarr = [];
@@ -100,20 +95,23 @@ export const Register = () => {
   //     // localStorage.setItem("register", JSON.stringify(regarr));
   //     // console.log(regdata)
 
-
-     
   //   }
-    
+
   // };
-  const registerData = (e) => {
+  const registerData = async (e) => {
     e.preventDefault();
-    if (rdata.username === "" || rdata.fullname === "" || rdata.email === "" || rdata.password === "") {
+    if (
+      rdata.username === "" ||
+      rdata.fullname === "" ||
+      rdata.email === "" ||
+      rdata.password === ""
+    ) {
       alert("Please enter all details");
     } else {
       const isDataExisting = existingdata.some((ele) => {
         return ele.email === rdata.email;
       });
-  
+
       if (isDataExisting) {
         alert("Data already exists");
         setRdata({
@@ -123,48 +121,42 @@ export const Register = () => {
           password: "",
         });
       } else {
-        axios
-          .post("https://emart-data.onrender.com/registers", rdata)
-          .then((response) => {
-            console.log(response.data);
-  
-            // Fetch updated data after successful registration
-            axios
-              .get("https://emart-data.onrender.com/registers")
-              .then((res) => {
-                console.log(res.data);
-                setExistingdata(res.data);
-                navigate("/login"); // Navigate to Login component
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((error) => {
-            console.log(error);
+        try {
+          const response = await axios.post(
+            "https://emart-data.onrender.com/registers",
+            rdata
+          );
+          console.log(response.data);
+          navigate("/login"); // Navigate to Login component
+
+          // Fetch updated data after successful registration
+          // const res = await axios.get("https://emart-data.onrender.com/registers");
+          // console.log(res.data);
+          // setExistingdata(res.data);
+
+          toast.success("Register Successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
           });
-  
-        toast.success('Register Successfully!', {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-  
-        setRdata({
-          username: "",
-          fullname: "",
-          email: "",
-          password: "",
-        });
+
+          setRdata({
+            username: "",
+            fullname: "",
+            email: "",
+            password: "",
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };
-  
 
   return (
     <>
@@ -234,80 +226,80 @@ export const Register = () => {
         </div>
       </div> */}
 
-<div className="container my-5">
-  <div className="row justify-content-center">
-    <div className="col-md-6">
-      <div className="card">
-        <div className="card-header">
-          <h5 className="card-title  fw-bold">Join our Community!</h5>
-        </div>
-        <div className="card-body">
-          <form onSubmit={registerData}>
-            <div className="mb-3 row">
-              <div className="col-md-6">
-                <label htmlFor="Name1">Username</label>
-                <input
-                  value={rdata.username}
-                  type="text"
-                  className="form-control"
-                  id="Name1"
-                  placeholder="Enter username"
-                  onChange={(e) =>
-                    setRdata({ ...rdata, username: e.target.value })
-                  }
-                />
+      <div className="container my-5">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-header">
+                <h5 className="card-title  fw-bold">Join our Community!</h5>
               </div>
-              <div className="col-md-6">
-                <label htmlFor="fullname">Full Name</label>
-                <input
-                  value={rdata.fullname}
-                  type="text"
-                  className="form-control"
-                  id="fullname"
-                  placeholder="Enter Full Name"
-                  onChange={(e) =>
-                    setRdata({ ...rdata, fullname: e.target.value })
-                  }
-                />
+              <div className="card-body">
+                <form onSubmit={registerData}>
+                  <div className="mb-3 row">
+                    <div className="col-md-6">
+                      <label htmlFor="Name1">Username</label>
+                      <input
+                        value={rdata.username}
+                        type="text"
+                        className="form-control"
+                        id="Name1"
+                        placeholder="Enter username"
+                        onChange={(e) =>
+                          setRdata({ ...rdata, username: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="fullname">Full Name</label>
+                      <input
+                        value={rdata.fullname}
+                        type="text"
+                        className="form-control"
+                        id="fullname"
+                        placeholder="Enter Full Name"
+                        onChange={(e) =>
+                          setRdata({ ...rdata, fullname: e.target.value })
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <input
+                      value={rdata.email}
+                      type="email"
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                      onChange={(e) =>
+                        setRdata({ ...rdata, email: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input
+                      value={rdata.password}
+                      type="password"
+                      className="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Password"
+                      onChange={(e) =>
+                        setRdata({ ...rdata, password: e.target.value })
+                      }
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-dark w-100 mt-3">
+                    Register
+                  </button>
+                </form>
               </div>
             </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1">Email address</label>
-              <input
-                value={rdata.email}
-                type="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
-                onChange={(e) =>
-                  setRdata({ ...rdata, email: e.target.value })
-                }
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1">Password</label>
-              <input
-                value={rdata.password}
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Password"
-                onChange={(e) =>
-                  setRdata({ ...rdata, password: e.target.value })
-                }
-              />
-            </div>
-            <button type="submit" className="btn btn-dark w-100 mt-3">
-            Register
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <ToastContainer
+        <ToastContainer
           position="top-center"
           autoClose={1000}
           newestOnTop={false}
@@ -317,8 +309,7 @@ export const Register = () => {
           draggable
           theme="light"
         />
-</div>
-
+      </div>
     </>
   );
 };

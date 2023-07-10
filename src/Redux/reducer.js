@@ -58,7 +58,7 @@ export const reducer = (state = initialState, { type, payload }) => {
   }
 
   else if( type === LOGOUT){
-    return {...state,login:false}
+    return {...state, Cart: [],login:false}
   }
   
   else {

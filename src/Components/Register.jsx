@@ -127,7 +127,6 @@ export const Register = () => {
             rdata
           );
           console.log(response.data);
-          navigate("/login"); // Navigate to Login component
 
           // Fetch updated data after successful registration
           // const res = await axios.get("https://emart-data.onrender.com/registers");
@@ -144,6 +143,8 @@ export const Register = () => {
             progress: undefined,
             theme: "light",
           });
+       alert("Register Successfully!")
+          navigate("/login"); // Navigate to Login component
 
           setRdata({
             username: "",
@@ -299,7 +300,10 @@ export const Register = () => {
           </div>
         </div>
 
-        <ToastContainer
+     
+      </div>
+
+      <ToastContainer
           position="top-center"
           autoClose={1000}
           newestOnTop={false}
@@ -309,7 +313,6 @@ export const Register = () => {
           draggable
           theme="light"
         />
-      </div>
     </>
   );
 };

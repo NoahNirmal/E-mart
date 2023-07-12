@@ -29,7 +29,7 @@ const disptach=  useDispatch()
       <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
         <div className="container">
           <NavLink className="navbar-brand fw-bold fs-4" to="/">
-            EMart
+           <img  className="logoimg" src="./assets/images/EMart.png" alt="logo"/>
           </NavLink>
           <button
             className="navbar-toggler"

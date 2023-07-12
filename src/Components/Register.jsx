@@ -133,9 +133,19 @@ export const Register = () => {
           // console.log(res.data);
           // setExistingdata(res.data);
 
+          // toast.success("Register Successfully!", {
+          //   position: toast.POSITION.TOP_CENTER,
+          //   autoClose: 1000,
+          //   hideProgressBar: true,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "light",
+          // });
           toast.success("Register Successfully!", {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1000,
+            position: "top-center",
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -143,7 +153,7 @@ export const Register = () => {
             progress: undefined,
             theme: "light",
           });
-       alert("Register Successfully!")
+          //  alert("Register Successfully!")
           navigate("/login"); // Navigate to Login component
 
           setRdata({
@@ -299,20 +309,21 @@ export const Register = () => {
             </div>
           </div>
         </div>
-
-     
+        <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       </div>
 
-      <ToastContainer
-          position="top-center"
-          autoClose={1000}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          theme="light"
-        />
+    
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { addCart } from "../Redux/action";
@@ -9,87 +10,89 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StarRatings from "react-star-ratings";
 
-
 const Loading = () => {
+  // const skeletonStyle = {
+  //   backgroundColor: "blue", // Change the color to your desired color
+  // };
+
   return (
     <>
+     
       <div className="col-md-3">
-        <Skeleton height={350} />
+        <Skeleton height={350}  />
       </div>
       <div className="col-md-3">
-        <Skeleton height={350} />
+        <Skeleton height={350}  />
       </div>
       <div className="col-md-3">
-        <Skeleton height={350} />
+        <Skeleton height={350}  />
       </div>
-
       <div className="col-md-3">
-        <Skeleton height={350} />
+        <Skeleton height={350}  />
       </div>
     </>
   );
 };
 
-
-const ShowProducts = ({handleSearch,Filterproducts,active,searchvalue,filterarr}) => {
+const ShowProducts = ({
+  handleSearch,
+  Filterproducts,
+  active,
+  searchvalue,
+  filterarr,
+}) => {
   const dispatch = useDispatch();
-
- 
-
 
   return (
     <>
-      <div className="buttons d-flex justify-content-center mb-5 pb-5">
-        <button
-          className={`btn btn-outline-dark me-2 ${
-            active === "All" ? "active" : null
-          }`}
-          onClick={() => Filterproducts("All")}
-        >
-          {" "}
-          All
-        </button>
-        <button
-          className={`btn btn-outline-dark me-2 ${
-            active === "men's clothing" ? "active" : null
-          }`}
-          onClick={() => Filterproducts("men's clothing")}
-        >
-          {" "}
-          Men's Clothing
-        </button>
-        <button
-          className={`btn btn-outline-dark me-2 ${
-            active === "women's clothing" ? "active" : null
-          }`}
-          onClick={() => Filterproducts("women's clothing")}
-        >
-          {" "}
-          Women's Clothing
-        </button>
-        <button
-          className={`btn btn-outline-dark me-2 ${
-            active === "jewelery" ? "active" : null
-          }`}
-          onClick={() => Filterproducts("jewelery")}
-        >
-          {" "}
-          Jewellery's
-        </button>
-        <button
-          className={`btn btn-outline-dark me-2 ${
-            active === "electronics" ? "active" : null
-          }`}
-          onClick={() => Filterproducts("electronics")}
-        >
-          {" "}
-          Electronic
-        </button>
-        <div className="col-md-3 ms-5">
+      <div className="buttons_container d-flex flex-column flex-md-row justify-content-center mb-5 p-2">
+        <div className="btn-group flex-wrap mb-3 mb-md-0 me-md-3 ">
+          <button
+            className={`btn btn-outline-dark me-2 m-2 ${
+              active === "All" ? "active" : null
+            }`}
+            onClick={() => Filterproducts("All")}
+          >
+            All
+          </button>
+          <button
+            className={`btn btn-outline-dark me-2 m-2 ${
+              active === "men's clothing" ? "active" : null
+            }`}
+            onClick={() => Filterproducts("men's clothing")}
+          >
+            Men's Clothing
+          </button>
+          <button
+            className={`btn btn-outline-dark me-2 m-2 ${
+              active === "women's clothing" ? "active" : null
+            }`}
+            onClick={() => Filterproducts("women's clothing")}
+          >
+            Women's Clothing
+          </button>
+          <button
+            className={`btn btn-outline-dark me-2 m-2 ${
+              active === "jewelery" ? "active" : null
+            }`}
+            onClick={() => Filterproducts("jewelery")}
+          >
+            Jewellery's
+          </button>
+          <button
+            className={`btn btn-outline-dark me-2 m-2 ${
+              active === "electronics" ? "active" : null
+            }`}
+            onClick={() => Filterproducts("electronics")}
+          >
+            Electronic
+          </button>
+        </div>
+        <div className="col-md-3 m-2">
           <input
             type="text"
             value={searchvalue}
-            className="form-control "
+            className="form-control"
             placeholder="Search your item"
             style={{ border: "1px solid black" }}
             onChange={handleSearch}
@@ -198,7 +201,6 @@ export const Products = () => {
     getProducts();
   }, []);
 
-
   const Filterproducts = (cat) => {
     if (cat === "All") {
       setFilterarr(products);
@@ -218,15 +220,14 @@ export const Products = () => {
       const searchproducts = products.filter((ele) => {
         return ele.title.toLowerCase().includes(searchvalue.toLowerCase());
       });
-      console.log("searchproducts",searchproducts)
+      console.log("searchproducts", searchproducts);
       setFilterarr(searchproducts);
     }
   };
-  
 
   return (
     <div>
-      <div className="container my-5 py-5">
+      <div className="container my-5 py-5 ">
         <div className="row">
           <div className="col-12 mb-5 ">
             <h1 className="display-6 fw-bolder text-center">Latest Products</h1>
@@ -234,7 +235,17 @@ export const Products = () => {
           </div>
         </div>
         <div className="row justify-content-center">
-          {isloading ? <Loading /> : <ShowProducts searchvalue={searchvalue} Filterproducts ={Filterproducts} handleSearch={handleSearch} active={active} filterarr={filterarr}/>}
+          {isloading ? (
+            <Loading />
+          ) : (
+            <ShowProducts
+              searchvalue={searchvalue}
+              Filterproducts={Filterproducts}
+              handleSearch={handleSearch}
+              active={active}
+              filterarr={filterarr}
+            />
+          )}
         </div>
       </div>
 

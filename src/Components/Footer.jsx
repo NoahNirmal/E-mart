@@ -1,4 +1,5 @@
 import React from 'react';
+import './Footer.css'
 
 const Footer = () => {
   return (
@@ -32,11 +33,11 @@ const Footer = () => {
     //     <p className="mb-0">&copy; {new Date().getFullYear()} Emart. All rights reserved.</p>
     //   </div>
     // </footer>
-    <footer className="bg-dark text-white text-center py-2">
+    <div className="bg-dark text-white text-center py-2 footer">
     <div className="container">
       <p className="mb-0">&copy; {new Date().getFullYear()} Emart. All rights reserved.| Created by Noah Nirmal</p>
     </div>
-  </footer>
+  </div>
   );
 };
 
